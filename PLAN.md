@@ -170,6 +170,11 @@ against the app or the code, not against aspirational specs.
       + tax worksheet, AI, team roles, multi-company.
 - [x] Em-dash purge (2026-08-13): all em dashes removed site-wide; rule is
       permanent (see README house rules).
+- [x] "Settings" section: 4 pages written 2026-08-13 (tour of all 13 tabs,
+      the four number-changing Business settings, sales tax rates, email
+      templates), grounded in the Business/Tax/Email settings Svelte sources.
+      Sidebar order: Start here, Everyday use, Settings, Run it yourself,
+      Trust.
 - [x] "Trust" section: 4 pages written 2026-08-13 (telemetry in plain words,
       privacy and your data, security reporting + built-in protections, AGPL +
       commercial license + CLA + trademark), grounded in TELEMETRY.md,

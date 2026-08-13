@@ -24,6 +24,7 @@ export default defineConfig({
 			sidebar: [
 				{ label: 'Start here', items: [{ autogenerate: { directory: 'docs/start' } }] },
 				{ label: 'Everyday use', items: [{ autogenerate: { directory: 'docs/use' } }] },
+				{ label: 'Settings', items: [{ autogenerate: { directory: 'docs/settings' } }] },
 				{ label: 'Run it yourself', items: [{ autogenerate: { directory: 'docs/self-host' } }] },
 				{ label: 'Trust', items: [{ autogenerate: { directory: 'docs/trust' } }] },
 			],
