@@ -1,0 +1,1138 @@
+---
+// Thalermark marketing landing page.
+// Ported from thalermark/spikes/thalermark-landing.html with the beta-launch
+// CTA changes: email waitlist → live app links (sign-up is open).
+const APP = 'https://app.thalermark.com';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Primary Meta -->
+<title>Thalermark — Accounting for the people who build, mend, and tend.</title>
+<meta name="description" content="An open source, AI-first accounting tool built for freelancers and trades people. Less paperwork, more answers.">
+<meta name="theme-color" content="#0f1626">
+
+<!-- Favicons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<!-- Open Graph (Facebook, LinkedIn, Slack, Discord) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thalermark.com/">
+<meta property="og:title" content="Thalermark — Accounting for the people who build, mend, and tend.">
+<meta property="og:description" content="An open source, AI-first accounting tool built for freelancers and trades people. Less paperwork, more answers.">
+<meta property="og:image" content="https://thalermark.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Thalermark — the mark of the Thaler">
+<meta property="og:site_name" content="Thalermark">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://thalermark.com/">
+<meta name="twitter:title" content="Thalermark — Accounting for the people who build, mend, and tend.">
+<meta name="twitter:description" content="An open source, AI-first accounting tool built for freelancers and trades people. Less paperwork, more answers.">
+<meta name="twitter:image" content="https://thalermark.com/og-image.png">
+<meta name="twitter:image:alt" content="Thalermark — the mark of the Thaler">
+
+<!-- Structured data for richer Google results -->
+<script type="application/ld+json" is:inline>
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Thalermark",
+  "description": "An open source, AI-first accounting tool built for freelancers and trades people.",
+  "url": "https://thalermark.com",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "iOS, Android, Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style is:global>
+  :root {
+    --gold: #c8a663;
+    --gold-deep: #9a7d3f;
+    --gold-light: #e8d5a3;
+    --navy: #1a2238;
+    --navy-deep: #0f1626;
+    --ink: #0f1626;
+    --cream: #f4ede0;
+    --cream-warm: #ebe0cc;
+    --sage: #5c7b3f;
+    --copper: #b87333;
+    --slate: #3d5a6c;
+    --oxblood: #8b3a2e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Grain overlay for warmth */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    z-index: 100;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* === Reusable === */
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-deep);
+    display: inline-block;
+  }
+
+  .eyebrow::before {
+    content: '— ';
+    color: var(--gold);
+  }
+
+  /* === Struck Mark Wordmark Component === */
+  .wordmark {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+    position: relative;
+  }
+
+  .wordmark .strike {
+    display: block;
+    height: 1.5px;
+    background: currentColor;
+    width: 100%;
+    margin-bottom: 0.15em;
+    position: relative;
+  }
+
+  .wordmark .strike::before,
+  .wordmark .strike::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .wordmark .strike::before { left: 0; }
+  .wordmark .strike::after { right: 0; }
+
+  .wordmark .word {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    letter-spacing: -0.04em;
+    font-variation-settings: 'opsz' 144;
+  }
+
+  .wordmark-large .word { font-size: clamp(3rem, 8vw, 6rem); }
+  .wordmark-medium .word { font-size: 2.2rem; }
+  .wordmark-small .word { font-size: 1.4rem; }
+
+  /* === Nav === */
+  nav {
+    padding: 2rem 0;
+    position: relative;
+    z-index: 10;
+  }
+
+  nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  nav .wordmark {
+    color: var(--ink);
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  nav a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--gold-deep); }
+
+  nav .cta {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 0.7rem 1.4rem;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+  }
+
+  nav .cta:hover { background: var(--navy); color: var(--cream); }
+
+  .nav-github {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--ink);
+    opacity: 0.75;
+    transition: opacity 0.2s, color 0.2s;
+  }
+
+  .nav-github:hover {
+    opacity: 1;
+    color: var(--gold-deep);
+  }
+
+  .nav-github svg {
+    display: block;
+  }
+
+  /* === Hero === */
+  .hero {
+    padding: 6rem 0 8rem;
+    position: relative;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    font-variation-settings: 'opsz' 144;
+    margin: 2rem 0;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-deep);
+    font-weight: 400;
+  }
+
+  .hero p.lead {
+    font-size: 1.15rem;
+    color: var(--ink);
+    opacity: 0.75;
+    line-height: 1.6;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+
+  /* === CTA buttons (replaces the early-access email form) === */
+  .cta-row {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--ink);
+    color: var(--cream);
+    padding: 1rem 2.2rem;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--gold-deep); color: var(--cream); }
+
+  .btn-secondary {
+    color: var(--ink);
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-bottom: 1px solid var(--gold-deep);
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-secondary:hover { color: var(--gold-deep); }
+
+  .form-note {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    color: var(--ink);
+    opacity: 0.5;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .form-note .mail-link {
+    color: var(--gold-deep);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gold-deep);
+    transition: color 0.2s, border-color 0.2s;
+    opacity: 1;
+  }
+
+  .form-note .mail-link:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+
+  .cta-section .form-note {
+    color: var(--ink);
+    opacity: 0.6;
+  }
+
+  /* Hero visual — large struck mark */
+  .hero-visual {
+    position: relative;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-mark {
+    width: 100%;
+    max-width: 460px;
+    position: relative;
+    color: var(--gold-deep);
+  }
+
+  .hero-mark::before {
+    content: '';
+    position: absolute;
+    inset: -10%;
+    background: radial-gradient(circle, rgba(200, 166, 99, 0.08) 0%, transparent 60%);
+    z-index: -1;
+  }
+
+  /* Decorative dentil ring around hero mark */
+  .dentils {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  /* === Section: Quote of the customer === */
+  .interlude {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .interlude::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top, rgba(200, 166, 99, 0.08), transparent 70%);
+    pointer-events: none;
+  }
+
+  .interlude blockquote {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    max-width: 820px;
+    color: var(--cream);
+    font-variation-settings: 'opsz' 144;
+    position: relative;
+    padding-left: 2rem;
+    border-left: 2px solid var(--gold);
+  }
+
+  .interlude blockquote em {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  .interlude .attribution {
+    margin-top: 2rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding-left: 2rem;
+  }
+
+  /* === Section: How it differs === */
+  .difference {
+    padding: 8rem 0;
+  }
+
+  .section-header {
+    margin-bottom: 5rem;
+    max-width: 720px;
+  }
+
+  .section-header h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin: 1rem 0;
+    font-variation-settings: 'opsz' 144;
+  }
+
+  .section-header h2 em {
+    color: var(--gold-deep);
+    font-style: italic;
+  }
+
+  .section-header p {
+    font-size: 1.1rem;
+    color: var(--ink);
+    opacity: 0.7;
+    line-height: 1.6;
+  }
+
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid rgba(15, 22, 38, 0.12);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .comparison > div {
+    padding: 2.5rem;
+    position: relative;
+  }
+
+  .comparison .old {
+    background: var(--cream-warm);
+    color: var(--ink);
+    opacity: 0.75;
+  }
+
+  .comparison .new {
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  .comparison .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0.6;
+  }
+
+  .comparison .new .label { color: var(--gold); opacity: 1; }
+
+  .comparison .quote {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 1.45rem;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+    font-variation-settings: 'opsz' 144;
+  }
+
+  .comparison .new .quote em {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+
+  /* === Section: Features === */
+  .features {
+    padding: 6rem 0;
+    background: var(--cream-warm);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    margin-top: 4rem;
+  }
+
+  .feature {
+    padding: 3rem 2.5rem;
+    border-right: 1px solid rgba(15, 22, 38, 0.1);
+    border-bottom: 1px solid rgba(15, 22, 38, 0.1);
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .feature:hover { background: rgba(200, 166, 99, 0.08); }
+
+  .feature:nth-child(2n) { border-right: none; }
+  .feature:nth-last-child(-n+2) { border-bottom: none; }
+
+  .feature .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--gold-deep);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .feature h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    font-variation-settings: 'opsz' 36;
+  }
+
+  .feature p {
+    font-size: 0.95rem;
+    color: var(--ink);
+    opacity: 0.7;
+    line-height: 1.6;
+  }
+
+  /* === Section: For who === */
+  .audience {
+    padding: 8rem 0;
+  }
+
+  .audience-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .audience-item {
+    text-align: center;
+    padding: 2rem 1rem;
+    border-top: 2px solid var(--gold);
+    transition: transform 0.3s;
+  }
+
+  .audience-item:hover { transform: translateY(-4px); }
+
+  .audience-item .icon {
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 1.5rem;
+    color: var(--gold-deep);
+  }
+
+  .audience-item h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .audience-item p {
+    font-size: 0.85rem;
+    color: var(--ink);
+    opacity: 0.6;
+  }
+
+  /* === Section: Open Source === */
+  .principles {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 8rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .principles::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(200, 166, 99, 0.06), transparent 60%);
+    pointer-events: none;
+  }
+
+  .principles .section-header h2 { color: var(--cream); }
+  .principles .section-header p { color: var(--cream); opacity: 0.7; }
+  .principles .eyebrow { color: var(--gold); }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 4rem;
+  }
+
+  .principle h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 1.4rem;
+    margin: 1rem 0;
+    color: var(--gold-light);
+    letter-spacing: -0.01em;
+  }
+
+  .principle p {
+    font-size: 0.95rem;
+    color: var(--cream);
+    opacity: 0.7;
+    line-height: 1.6;
+  }
+
+  .principle .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.8rem;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  /* === Final CTA === */
+  .cta-section {
+    padding: 10rem 0;
+    text-align: center;
+    background: linear-gradient(180deg, var(--cream) 0%, var(--cream-warm) 100%);
+  }
+
+  .cta-section h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+    color: var(--ink);
+    max-width: 900px;
+    margin: 1.5rem auto 2.5rem;
+    font-variation-settings: 'opsz' 144;
+  }
+
+  .cta-section h2 em {
+    color: var(--gold-deep);
+    font-style: italic;
+  }
+
+  .cta-section .cta-row {
+    justify-content: center;
+  }
+
+  /* === Footer === */
+  footer {
+    background: var(--navy-deep);
+    color: var(--cream);
+    padding: 5rem 0 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid rgba(244, 237, 224, 0.1);
+  }
+
+  .footer-brand .wordmark { color: var(--cream); margin-bottom: 1.5rem; }
+
+  .footer-brand p {
+    color: var(--cream);
+    opacity: 0.6;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 320px;
+  }
+
+  footer h5 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+
+  footer ul { list-style: none; }
+  footer li { margin-bottom: 0.75rem; }
+
+  footer a {
+    color: var(--cream);
+    opacity: 0.75;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: opacity 0.2s, color 0.2s;
+  }
+
+  footer a:hover { opacity: 1; color: var(--gold-light); }
+
+  .footer-bottom {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--cream);
+    opacity: 0.4;
+  }
+
+  .footer-bottom .meta { display: flex; gap: 2rem; flex-wrap: wrap; }
+
+  /* === Animations === */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes strike {
+    from { transform: scaleX(0); opacity: 0; }
+    to { transform: scaleX(1); opacity: 1; }
+  }
+
+  .hero h1, .hero p.lead, .hero .cta-row, .hero .form-note, .hero .eyebrow {
+    animation: fadeUp 0.8s ease backwards;
+  }
+
+  .hero .eyebrow { animation-delay: 0.1s; }
+  .hero h1 { animation-delay: 0.2s; }
+  .hero p.lead { animation-delay: 0.4s; }
+  .hero .cta-row { animation-delay: 0.55s; }
+  .hero .form-note { animation-delay: 0.7s; }
+
+  .wordmark .strike {
+    transform-origin: left;
+    animation: strike 0.7s cubic-bezier(0.6, 0, 0.4, 1) backwards;
+  }
+
+  nav .wordmark .strike { animation-delay: 0.5s; }
+
+  /* === Responsive === */
+  @media (max-width: 900px) {
+    .hero-grid, .comparison, .features-grid, .principles-grid {
+      grid-template-columns: 1fr;
+    }
+    .audience-list { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .hero { padding: 3rem 0 5rem; }
+    .hero-visual { max-width: 380px; margin: 0 auto; }
+    nav ul li:not(:last-child) { display: none; }
+    .comparison .new, .comparison .old { padding: 2rem; }
+    .feature { border-right: none !important; }
+    .feature:not(:last-child) { border-bottom: 1px solid rgba(15, 22, 38, 0.1) !important; }
+  }
+
+  @media (max-width: 560px) {
+    .audience-list { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .container { padding: 0 1.25rem; }
+    .cta-row { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .cta-section .cta-row { align-items: center; }
+    .btn-primary { width: 100%; text-align: center; }
+    .cta-section .btn-primary { width: auto; }
+  }
+
+</style>
+
+<!-- Matomo -->
+<script is:inline>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(["disableCookies"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//analytics.thalermark.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<noscript><p><img referrerpolicy="no-referrer-when-downgrade" src="//analytics.thalermark.com/matomo.php?idsite=1&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Matomo Code -->
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="wordmark wordmark-small">
+      <span class="strike"></span>
+      <span class="word">thalermark</span>
+    </div>
+    <ul>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#who">Who it's for</a></li>
+      <li><a href="#open">Open source</a></li>
+      <li><a href="/docs/">Docs</a></li>
+      <li><a href="https://github.com/Thalermark/thalermark" target="_blank" rel="noopener" class="nav-github" aria-label="View on GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.04-.02-2.05-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.29-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.49 5.92.43.37.81 1.1.81 2.22 0 1.61-.01 2.9-.01 3.29 0 .32.22.7.83.58A12 12 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        <span>GitHub</span>
+      </a></li>
+      <li><a href={APP} class="cta">Open the app</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Built for trades. AI first. Open source.</span>
+        <h1>Accounting for the people who <em>build, mend, and tend.</em></h1>
+        <p class="lead">Thalermark is an accounting tool that answers questions instead of asking them. Snap a receipt. Send an invoice. Know where you stand. The AI does the rest.</p>
+
+        <div class="cta-row">
+          <a class="btn-primary" href={`${APP}/sign-up`}>Start free</a>
+          <a class="btn-secondary" href={`${APP}/sign-in`}>Sign in</a>
+        </div>
+        <p class="form-note">Now in open beta · questions? <a href="mailto:hello@thalermark.com" class="mail-link">hello@thalermark.com</a></p>
+      </div>
+
+      <div class="hero-visual">
+        <!-- The Hero Mark — Struck TM monogram -->
+        <svg class="hero-mark" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-label="Thalermark struck mark">
+          <defs>
+            <linearGradient id="goldShine" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#e8d5a3"/>
+              <stop offset="40%" stop-color="#c8a663"/>
+              <stop offset="100%" stop-color="#9a7d3f"/>
+            </linearGradient>
+            <linearGradient id="goldStrike" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#9a7d3f"/>
+              <stop offset="50%" stop-color="#c8a663"/>
+              <stop offset="100%" stop-color="#9a7d3f"/>
+            </linearGradient>
+          </defs>
+
+          <!-- decorative outer dentils, 16 around -->
+          <g fill="url(#goldShine)" opacity="0.4">
+            <circle cx="200" cy="20" r="2"/>
+            <circle cx="269" cy="34" r="2"/>
+            <circle cx="328" cy="72" r="2"/>
+            <circle cx="366" cy="131" r="2"/>
+            <circle cx="380" cy="200" r="2"/>
+            <circle cx="366" cy="269" r="2"/>
+            <circle cx="328" cy="328" r="2"/>
+            <circle cx="269" cy="366" r="2"/>
+            <circle cx="200" cy="380" r="2"/>
+            <circle cx="131" cy="366" r="2"/>
+            <circle cx="72" cy="328" r="2"/>
+            <circle cx="34" cy="269" r="2"/>
+            <circle cx="20" cy="200" r="2"/>
+            <circle cx="34" cy="131" r="2"/>
+            <circle cx="72" cy="72" r="2"/>
+            <circle cx="131" cy="34" r="2"/>
+          </g>
+
+          <!-- horizontal strike line -->
+          <line x1="80" y1="155" x2="320" y2="155" stroke="url(#goldStrike)" stroke-width="2.5"/>
+          <circle cx="80" cy="155" r="4.5" fill="url(#goldShine)"/>
+          <circle cx="320" cy="155" r="4.5" fill="url(#goldShine)"/>
+
+          <!-- "tm" wordmark — the monogram -->
+          <text x="200" y="280" text-anchor="middle"
+                font-family="Fraunces, serif" font-weight="300"
+                font-size="200" fill="url(#goldShine)"
+                letter-spacing="-10"
+                style="font-variation-settings: 'opsz' 144;">tm</text>
+
+          <!-- below the wordmark, a tiny dentil line -->
+          <line x1="170" y1="310" x2="230" y2="310" stroke="url(#goldStrike)" stroke-width="1" opacity="0.5"/>
+
+          <!-- subtle latin label -->
+          <text x="200" y="335" text-anchor="middle"
+                font-family="JetBrains Mono, monospace" font-size="9"
+                fill="#9a7d3f" letter-spacing="5" opacity="0.7">EST · ANNO MMXXVI</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERLUDE / QUOTE -->
+<section class="interlude">
+  <div class="container">
+    <span class="eyebrow" style="color: var(--gold); display: block; margin-bottom: 1.5rem;">The thing nobody says</span>
+    <blockquote>
+      You didn't get into your business because you love spreadsheets. You got into it because you're good at the work — <em>the actual work.</em> Software should respect that.
+    </blockquote>
+    <div class="attribution">— Why Thalermark exists</div>
+  </div>
+</section>
+
+<!-- HOW IT DIFFERS -->
+<section class="difference" id="how">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">A different kind of accounting tool</span>
+      <h2>Most accounting software asks. <em>Thalermark answers.</em></h2>
+      <p>Every other tool makes you learn double-entry bookkeeping, journal entries, and chart of accounts. Thalermark watches your business and tells you what matters.</p>
+    </div>
+
+    <div class="comparison">
+      <div class="old">
+        <span class="label">The old way</span>
+        <p class="quote">"Would you like to create a journal entry? Please select an account from your chart of accounts and enter the debit and credit amounts."</p>
+      </div>
+      <div class="new">
+        <span class="label">Thalermark</span>
+        <p class="quote">"You have <em>3 unpaid invoices</em> totalling <em>$1,240.</em> Two are over 30 days. Want me to send reminders?"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">What it does</span>
+      <h2>Five things, <em>done well.</em></h2>
+      <p>No feature creep, no learning curve. Just the core of running a small business — handled the way it should have been all along.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature">
+        <span class="num">01 / Invoices</span>
+        <h3>Send an invoice in under sixty seconds.</h3>
+        <p>From your phone, between jobs. Stripe link attached. Track delivery, see when it's opened, get notified the moment it's paid.</p>
+      </div>
+      <div class="feature">
+        <span class="num">02 / Expenses</span>
+        <h3>Snap the receipt. We'll handle the rest.</h3>
+        <p>AI reads the receipt, picks the category, files it correctly. You confirm with one tap or let it auto-file based on your history.</p>
+      </div>
+      <div class="feature">
+        <span class="num">03 / Position</span>
+        <h3>One screen tells you exactly where you stand.</h3>
+        <p>Money in. Money out. What you're owed. What you owe. No charts you don't understand. No accounting jargon. Just the numbers.</p>
+      </div>
+      <div class="feature">
+        <span class="num">04 / Insights</span>
+        <h3>The AI watches the cycles you're too busy to see.</h3>
+        <p>"January is your slow month — set aside more in October." "This client pays late 80% of the time." Plain English, drawn from your own data.</p>
+      </div>
+      <div class="feature">
+        <span class="num">05 / Taxes</span>
+        <h3>Quarterly tax estimates, not surprises.</h3>
+        <p>US-first by default. 1099 awareness. Self-employment tax estimated as you go. No financial advice — just awareness, so April never blindsides you.</p>
+      </div>
+      <div class="feature">
+        <span class="num">06 / Privacy</span>
+        <h3>Opt-in telemetry. Open source. Your data is yours.</h3>
+        <p>We collect anonymous usage data only if you say yes. The code is public. The spec is published. You can audit every line.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="audience" id="who">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Who it's for</span>
+      <h2>For the people who <em>show up and do the work.</em></h2>
+      <p>If you're great at your craft but accounting feels like a second job you didn't ask for — Thalermark is built for you.</p>
+    </div>
+
+    <div class="audience-list">
+      <div class="audience-item">
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 6 L24 42 M12 18 Q24 22 36 18 M14 30 Q24 34 34 30"/>
+          <circle cx="24" cy="6" r="2.5" fill="currentColor"/>
+        </svg>
+        <h4>Landscapers</h4>
+        <p>Lawn care, tree work, hardscape</p>
+      </div>
+      <div class="audience-item">
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="8" y="20" width="32" height="20" rx="2"/>
+          <path d="M14 20 L14 14 Q14 10 18 10 L30 10 Q34 10 34 14 L34 20"/>
+          <circle cx="20" cy="30" r="2" fill="currentColor"/>
+          <circle cx="28" cy="30" r="2" fill="currentColor"/>
+        </svg>
+        <h4>Pet Care</h4>
+        <p>Dog walkers, sitters, groomers</p>
+      </div>
+      <div class="audience-item">
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 38 L24 10 L38 38 Z"/>
+          <circle cx="24" cy="28" r="3"/>
+          <path d="M24 31 L24 38"/>
+        </svg>
+        <h4>Trades</h4>
+        <p>Power wash, paint, repair</p>
+      </div>
+      <div class="audience-item">
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="24" cy="24" r="16"/>
+          <path d="M24 14 L24 24 L31 28"/>
+        </svg>
+        <h4>Freelancers</h4>
+        <p>Anyone running their own thing</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section class="principles" id="open">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">The principles</span>
+      <h2>Open source. <em>AI first.</em> No paywall traps.</h2>
+      <p>Thalermark is built in the open. The community can audit every line of code. The premium tier exists, but the core is yours to keep — forever.</p>
+    </div>
+
+    <div class="principles-grid">
+      <div class="principle">
+        <span class="num">01.</span>
+        <h3>Free and self-hosted, forever</h3>
+        <p>Run the full open source version on your own server with a single docker compose up. Core features stay free. No bait-and-switch.</p>
+      </div>
+      <div class="principle">
+        <span class="num">02.</span>
+        <h3>Pay for time and intelligence</h3>
+        <p>Our managed cloud and AI insights tier exist for people who'd rather not run servers. Reasonable pricing, no rent-seeking.</p>
+      </div>
+      <div class="principle">
+        <span class="num">03.</span>
+        <h3>Telemetry is opt-in, always</h3>
+        <p>If you let us see how the product is used, we publish what we learn. The telemetry code is open, the data is anonymous, and you can turn it off in one click.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section" id="join">
+  <div class="container">
+    <span class="eyebrow">Now in open beta</span>
+    <h2>Every coin once carried <em>a mark.</em><br>Now your business gets one too.</h2>
+
+    <div class="cta-row">
+      <a class="btn-primary" href={`${APP}/sign-up`}>Start free</a>
+      <a class="btn-secondary" href="/docs/">Read the docs</a>
+    </div>
+    <p class="form-note" style="margin-top: 1.5rem;">Or run it yourself — <a href="/docs/self-host/install/" class="mail-link">self-hosting guide</a></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="wordmark wordmark-medium">
+          <span class="strike"></span>
+          <span class="word">thalermark</span>
+        </div>
+        <p>The mark of the Thaler. An open source, AI-first accounting tool for freelancers and trades people.</p>
+      </div>
+      <div>
+        <h5>Product</h5>
+        <ul>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#who">Who it's for</a></li>
+          <li><a href={`${APP}/sign-up`}>Start free</a></li>
+          <li><a href={`${APP}/sign-in`}>Sign in</a></li>
+          <li><a href="/docs/">Docs</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Open source</h5>
+        <ul>
+          <li><a href="https://github.com/Thalermark/thalermark" target="_blank" rel="noopener">GitHub repo</a></li>
+          <li><a href="/docs/">Documentation</a></li>
+          <li><a href="https://github.com/Thalermark/thalermark/blob/main/TELEMETRY.md" target="_blank" rel="noopener">Telemetry spec</a></li>
+          <li><a href="https://github.com/Thalermark/thalermark/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">Contributing</a></li>
+          <li><a href="https://github.com/Thalermark/thalermark/blob/main/LICENSE" target="_blank" rel="noopener">AGPL-3.0 license</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Reach us</h5>
+        <ul>
+          <li><a href="mailto:hello@thalermark.com">hello@thalermark.com</a></li>
+          <li><a href="mailto:preview@thalermark.com?subject=Beta%20feedback%20%E2%80%94%20Thalermark">Beta feedback</a></li>
+          <li><a href="mailto:privacy@thalermark.com">Privacy questions</a></li>
+          <li><a href="mailto:security@thalermark.com">Security disclosure</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="meta">
+        <span>© MMXXVI Thalermark</span>
+        <span>thalermark.com</span>
+      </div>
+      <div>Built in the open</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

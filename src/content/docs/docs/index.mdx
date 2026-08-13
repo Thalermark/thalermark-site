@@ -1,0 +1,42 @@
+---
+title: Thalermark documentation
+description: Plain-language guides for using Thalermark — no accounting degree required.
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+Welcome. These docs are written the way Thalermark itself works: in plain
+language, about your actual business. You won't find accounting jargon here —
+if a page ever makes you feel like you need a bookkeeping class to follow it,
+that's a bug. [Tell us.](https://github.com/Thalermark/thalermark/issues)
+
+<CardGrid>
+	<LinkCard
+		title="What Thalermark is"
+		description="The 60-second tour: what it does and what makes it different."
+		href="/docs/start/what-is-thalermark/"
+	/>
+	<LinkCard
+		title="Create your account"
+		description="Sign up, answer a few questions about your business, and you're in."
+		href="/docs/start/create-your-account/"
+	/>
+	<LinkCard
+		title="Run it yourself"
+		description="Self-host the free, open source version with Docker Compose."
+		href="/docs/self-host/install/"
+	/>
+	<LinkCard
+		title="The source code"
+		description="Thalermark is open source (AGPL-3.0). Read every line on GitHub."
+		href="https://github.com/Thalermark/thalermark"
+	/>
+</CardGrid>
+
+:::note[Thalermark is in open beta]
+The product works and real businesses run on it, but we're still polishing —
+and these docs are growing alongside it. Guides for everyday tasks (invoicing,
+expenses, getting paid by card, reports) are being written now. Missing
+something you need? [Open an issue](https://github.com/Thalermark/thalermark/issues)
+or write [hello@thalermark.com](mailto:hello@thalermark.com).
+:::

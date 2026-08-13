@@ -1,0 +1,17 @@
+/* Thalermark brand accent for Starlight — gold on navy/cream.
+   Palette source: the landing page tokens (--gold #c8a663, --gold-deep #9a7d3f,
+   --navy #1a2238, --cream #f4ede0). */
+
+/* Dark mode colors. */
+:root {
+	--sl-color-accent-low: #33290f;
+	--sl-color-accent: #9a7d3f;
+	--sl-color-accent-high: #e8d5a3;
+}
+
+/* Light mode colors. */
+:root[data-theme='light'] {
+	--sl-color-accent-low: #f3ead6;
+	--sl-color-accent: #9a7d3f;
+	--sl-color-accent-high: #5c4a22;
+}
