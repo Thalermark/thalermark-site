@@ -179,9 +179,11 @@ against the app or the code, not against aspirational specs.
       privacy and your data, security reporting + built-in protections, AGPL +
       commercial license + CLA + trademark), grounded in TELEMETRY.md,
       SECURITY.md, and LICENSE-COMMERCIAL.md from the core repo.
-- [ ] Retrieve `og-image.png` + icon set (`apple-touch-icon.png`,
-      `icon-192/512`, `site.webmanifest`) from the host when it's back up, or
-      regenerate.
+- [x] Assets retrieved from the live host 2026-08-13 (`og-image.png` 2400x1260,
+      `apple-touch-icon.png`, `icon-192/512.png`, `site.webmanifest`) into
+      `public/`. Also verified: live thalermark.com is byte-identical to
+      `spikes/thalermark-landing.html`, so the port's baseline is exactly
+      what's in production.
 - [ ] Per-page raw markdown (`/docs/foo.md`): llms-full.txt covers agents for
       now; the per-page copy step is still a nice-to-have.
 - [ ] Screenshots for docs pages need the running app. Ship v1 text-first,
