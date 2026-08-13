@@ -170,7 +170,10 @@ against the app or the code, not against aspirational specs.
       + tax worksheet, AI, team roles, multi-company.
 - [x] Em-dash purge (2026-08-13): all em dashes removed site-wide; rule is
       permanent (see README house rules).
-- [ ] Write the "Trust" doc section (telemetry, privacy, security, license).
+- [x] "Trust" section: 4 pages written 2026-08-13 (telemetry in plain words,
+      privacy and your data, security reporting + built-in protections, AGPL +
+      commercial license + CLA + trademark), grounded in TELEMETRY.md,
+      SECURITY.md, and LICENSE-COMMERCIAL.md from the core repo.
 - [ ] Retrieve `og-image.png` + icon set (`apple-touch-icon.png`,
       `icon-192/512`, `site.webmanifest`) from the host when it's back up, or
       regenerate.

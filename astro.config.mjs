@@ -25,6 +25,7 @@ export default defineConfig({
 				{ label: 'Start here', items: [{ autogenerate: { directory: 'docs/start' } }] },
 				{ label: 'Everyday use', items: [{ autogenerate: { directory: 'docs/use' } }] },
 				{ label: 'Run it yourself', items: [{ autogenerate: { directory: 'docs/self-host' } }] },
+				{ label: 'Trust', items: [{ autogenerate: { directory: 'docs/trust' } }] },
 			],
 		}),
 	],
