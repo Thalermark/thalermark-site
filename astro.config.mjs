@@ -10,7 +10,7 @@ export default defineConfig({
 		starlight({
 			title: 'Thalermark Docs',
 			description:
-				'How to use Thalermark — the open source, AI-first accounting tool for freelancers and trades people.',
+				'How to use Thalermark, the open source, AI-first accounting tool for freelancers and trades people.',
 			favicon: '/favicon.svg',
 			social: [
 				{
@@ -23,6 +23,7 @@ export default defineConfig({
 			plugins: [starlightLlmsTxt()],
 			sidebar: [
 				{ label: 'Start here', items: [{ autogenerate: { directory: 'docs/start' } }] },
+				{ label: 'Everyday use', items: [{ autogenerate: { directory: 'docs/use' } }] },
 				{ label: 'Run it yourself', items: [{ autogenerate: { directory: 'docs/self-host' } }] },
 			],
 		}),

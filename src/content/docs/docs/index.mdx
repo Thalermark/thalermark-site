@@ -1,13 +1,13 @@
 ---
 title: Thalermark documentation
-description: Plain-language guides for using Thalermark — no accounting degree required.
+description: Plain-language guides for using Thalermark. No accounting degree required.
 ---
 
 import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
 Welcome. These docs are written the way Thalermark itself works: in plain
-language, about your actual business. You won't find accounting jargon here —
-if a page ever makes you feel like you need a bookkeeping class to follow it,
+language, about your actual business. You won't find accounting jargon here.
+If a page ever makes you feel like you need a bookkeeping class to follow it,
 that's a bug. [Tell us.](https://github.com/Thalermark/thalermark/issues)
 
 <CardGrid>
@@ -22,6 +22,16 @@ that's a bug. [Tell us.](https://github.com/Thalermark/thalermark/issues)
 		href="/docs/start/create-your-account/"
 	/>
 	<LinkCard
+		title="Send an invoice"
+		description="From blank page to sent, and paid, in under a minute."
+		href="/docs/use/send-an-invoice/"
+	/>
+	<LinkCard
+		title="Track what you spend"
+		description="Snap a receipt and let the AI fill in the details."
+		href="/docs/use/expenses/"
+	/>
+	<LinkCard
 		title="Run it yourself"
 		description="Self-host the free, open source version with Docker Compose."
 		href="/docs/self-host/install/"
@@ -34,9 +44,8 @@ that's a bug. [Tell us.](https://github.com/Thalermark/thalermark/issues)
 </CardGrid>
 
 :::note[Thalermark is in open beta]
-The product works and real businesses run on it, but we're still polishing —
-and these docs are growing alongside it. Guides for everyday tasks (invoicing,
-expenses, getting paid by card, reports) are being written now. Missing
-something you need? [Open an issue](https://github.com/Thalermark/thalermark/issues)
+The product works and real businesses run on it, but we're still polishing,
+and these docs grow alongside it. Missing something you need?
+[Open an issue](https://github.com/Thalermark/thalermark/issues)
 or write [hello@thalermark.com](mailto:hello@thalermark.com).
 :::
