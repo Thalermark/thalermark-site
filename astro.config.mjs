@@ -12,6 +12,24 @@ export default defineConfig({
 			description:
 				'How to use Thalermark, the open source, AI-first accounting tool for freelancers and trades people.',
 			favicon: '/favicon.svg',
+			head: [
+				{
+					// Same cookieless Matomo snippet as the landing page, same site id.
+					tag: 'script',
+					content: `
+  var _paq = window._paq = window._paq || [];
+  _paq.push(["disableCookies"]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//analytics.thalermark.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();`,
+				},
+			],
 			social: [
 				{
 					icon: 'github',

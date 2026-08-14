@@ -196,9 +196,10 @@ against the app or the code, not against aspirational specs.
 same day: apex and www serve identical new pages, landing shows the live
 CTAs ("Now in open beta", 3x "Start free"), zero em dashes, /docs and all
 sections load, llms.txt + og-image + webmanifest serve, and Matomo fires (js
-200 + pageview 204) with cookieless config intact. Docs pages carry no
-Matomo (landing-only script); site-wide injection via Starlight head config
-is a one-line change if wanted. Repo: github.com/Thalermark/thalermark-site,
+200 + pageview 204) with cookieless config intact. Matomo also covers the
+docs now: same cookieless snippet, same site id 1, injected on every docs
+page via Starlight's head config (added after the first cutover, so it needs
+a re-upload). Repo: github.com/Thalermark/thalermark-site,
 33 pages. Remaining: deploy pipeline (manual upload today), per-page raw
 .md URLs, license file for the site repo, screenshots pass.
 
