@@ -192,12 +192,15 @@ against the app or the code, not against aspirational specs.
 
 ## Status (2026-08-13)
 
-Phases 0-2 substantially built and verified locally: Starlight scaffold,
-landing page ported with live CTAs (rendered check top-to-bottom in the
-browser), docs home + 2 "Start here" pages + self-host install guide + 19
-"Everyday use" guides, Pagefind search, sitemap, and the llms.txt set all in
-the production build. Repo live at github.com/Thalermark/thalermark-site.
-Not yet deployed to the host.
+**LIVE.** Sean deployed `dist/` to the shared host; verified in production
+same day: apex and www serve identical new pages, landing shows the live
+CTAs ("Now in open beta", 3x "Start free"), zero em dashes, /docs and all
+sections load, llms.txt + og-image + webmanifest serve, and Matomo fires (js
+200 + pageview 204) with cookieless config intact. Docs pages carry no
+Matomo (landing-only script); site-wide injection via Starlight head config
+is a one-line change if wanted. Repo: github.com/Thalermark/thalermark-site,
+33 pages. Remaining: deploy pipeline (manual upload today), per-page raw
+.md URLs, license file for the site repo, screenshots pass.
 
 ## Explicitly out of scope
 
