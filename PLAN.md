@@ -206,8 +206,12 @@ sections load, llms.txt + og-image + webmanifest serve, and Matomo fires (js
 docs now: same cookieless snippet, same site id 1, injected on every docs
 page via Starlight's head config (added after the first cutover, so it needs
 a re-upload). Repo: github.com/Thalermark/thalermark-site,
-33 pages. Remaining: deploy pipeline (manual upload today), per-page raw
-.md URLs, license file for the site repo, screenshots pass.
+33 pages. CI/CD live since 2026-08-14: push to main builds and deploys
+dist/ over FTPS via GitHub Actions (SamKirkland/FTP-Deploy-Action, secrets
+FTP_HOST/FTP_USERNAME/FTP_PASSWORD, dedicated docroot-scoped FTP account);
+first run verified live (docs Matomo + retired AI-first copy confirmed in
+production). Remaining: per-page raw .md URLs, license file for the site
+repo, screenshots pass.
 
 ## Explicitly out of scope
 

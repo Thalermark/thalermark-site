@@ -13,7 +13,8 @@ handles the rest.
 ## Log it
 
 From the top of the new-expense form ("Will you use this for years?" →
-**Big purchase**), or from **Things you bought** in the menu.
+**Big purchase**), or the **Big purchases** link at the top of the Expenses
+list.
 
 1. **What did you buy?** How much, and when.
 2. **Did you pay all at once, or over time?**

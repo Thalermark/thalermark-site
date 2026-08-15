@@ -12,8 +12,9 @@ treats them.
 
 **Settings → Import & export → Take a copy with you** downloads every record
 in your workspace (invoices, estimates, expenses, bills, contacts, items,
-and more) as a single ZIP, in spreadsheet-friendly CSV or exact-copy JSON,
-one folder per company. No lock-in, no asking permission.
+payment history, jobs, logged hours, mileage, and more) as a single ZIP, in
+spreadsheet-friendly CSV or exact-copy JSON, one folder per company. No
+lock-in, no asking permission.
 
 One honest caveat: receipt *images* aren't in that ZIP today. They stay in
 the app's storage, so if you're leaving, save the ones you need from their

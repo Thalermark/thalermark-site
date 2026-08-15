@@ -13,8 +13,8 @@ any custom range), and every one exports to CSV.
 
 - **Profit & loss**: revenue minus expenses, what you actually made.
 - **Expenses by category**: where the money went, biggest first.
-- **A/R aging**: unpaid invoices by how overdue they are, so you know who
-  to chase.
+- **Who owes you**: unpaid invoices, grouped by how overdue they are, so
+  you know who to chase.
 - **Sales by contact**: your best customers by revenue.
 - **Revenue over time**: the monthly trend.
 - **What each job made**: billed minus tagged costs, per
