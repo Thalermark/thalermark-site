@@ -1,7 +1,7 @@
 # thalermark-site
 
 The marketing site and documentation for [Thalermark](https://thalermark.com),
-the open source, AI-first accounting tool for freelancers and trades people.
+the open source accounting tool for freelancers and trades people.
 
 One Astro project, two faces:
 

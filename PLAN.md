@@ -170,6 +170,12 @@ against the app or the code, not against aspirational specs.
       + tax worksheet, AI, team roles, multi-company.
 - [x] Em-dash purge (2026-08-13): all em dashes removed site-wide; rule is
       permanent (see README house rules).
+- [x] Positioning change (2026-08-14): "AI first / AI-first" removed from all
+      public copy (hero eyebrow, principles heading, meta/social descriptions,
+      footer, docs description). Replaced with the plain-language framing;
+      hero lead now "Thalermark does the rest" (honest while cloud AI is
+      BYOK). Factual AI feature copy stays. Internal architecture naming is
+      unaffected.
 - [x] "Settings" section: 4 pages written 2026-08-13 (tour of all 13 tabs,
       the four number-changing Business settings, sales tax rates, email
       templates), grounded in the Business/Tax/Email settings Svelte sources.

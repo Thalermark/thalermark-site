@@ -10,7 +10,7 @@ export default defineConfig({
 		starlight({
 			title: 'Thalermark Docs',
 			description:
-				'How to use Thalermark, the open source, AI-first accounting tool for freelancers and trades people.',
+				'How to use Thalermark, the open source accounting tool for freelancers and trades people.',
 			favicon: '/favicon.svg',
 			head: [
 				{
